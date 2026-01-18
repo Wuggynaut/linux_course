@@ -32,4 +32,4 @@ Käytössäni on Windows 10 käyttöjärjestelmää pyörittävä pöytäkone.
 - 22:20 VirtualBoxissa loin uuden virtuaalikoneen (Machine > New)
 
 Virtuaalikoneen resurssit:
-![VM hardware](Screenshot 2026-01-18 223244.png)
+![VM hardware](VMResources.png)
