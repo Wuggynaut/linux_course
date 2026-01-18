@@ -29,4 +29,6 @@ Käytössäni on Windows 10 käyttöjärjestelmää pyörittävä pöytäkone.
 
 - 22:10 Latasin VirtualBox asennusohjelman (https://www.virtualbox.org/wiki/Downloads), ja ajoin sen
 - 22:14 Latasin debian-live-13.3.0-amd64-xfce.iso -ISO-tiedoston (https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/)
-- 
+- 22:20 VirtualBoxissa loin uuden virtuaalikoneen (Machine > New)
+
+Virtuaalikoneen resurssit:
