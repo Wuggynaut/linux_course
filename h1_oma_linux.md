@@ -32,4 +32,8 @@ Käytössäni on Windows 10 käyttöjärjestelmää pyörittävä pöytäkone.
 - 22:20 VirtualBoxissa loin uuden virtuaalikoneen (Machine > New)
 
 Virtuaalikoneen resurssit:
+
 ![VM hardware](VMResources.png)
+
+- 22:30 Käynnistin virtuaalikoneen (Start -> Start with GUI)
+  - Törmäsin virheeseen "VT-x is disabled in the BIOS for all CPU modes", minun pitäisi siis laittaa tämä päälle koneeni BIOS asetuksissa.
