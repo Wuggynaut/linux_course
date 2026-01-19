@@ -60,3 +60,37 @@ Virtuaalikoneen resurssit:
 - 9.46 Linux aukesi työpöytään, kaikki näytti menevän onnistuneesti
 
 ![complete](installcomplete.png)
+
+- 9.49 avasin komentorivin, ja syötin komennon
+
+```
+sudo apt-get update
+```
+
+![commandline](command1.png)
+
+- 9.52 päivitin kaiken käyttämällä komentoa
+
+```
+sudo apt-get -y dist-upgrade
+```
+
+- 9.53 asensin palomuurin ja laitoin sen päälle komennoilla
+
+```
+sudo apt-get -y install ufw
+sudo ufw enable
+```
+
+- 9.55 käynnistin järjestelmän uudelleen laittaakseni palomuurin päälle käyttämällä komentoa:
+
+```
+sudo reboot
+```
+
+## Osa K - Suosikkiohjelmani linuxilla
+
+Päätin kokeilla Discord ohjelmaa linuxilla. Latasin .deb tiedoston Discord sivulta ja ajoin sen käyttämällä apt install komentoa.
+Discord asentui onnistuneesti, ja käynnistin sen komentoriviltä käyttämällä komentoa "discord"
+
+![discord](discord.png)
