@@ -94,3 +94,9 @@ Päätin kokeilla Discord ohjelmaa linuxilla. Latasin .deb tiedoston Discord siv
 Discord asentui onnistuneesti, ja käynnistin sen komentoriviltä käyttämällä komentoa "discord"
 
 ![discord](discord.png)
+
+Discord päivittyi normaalisti ja pääsin kirjautumaan sisään.
+Discord pyöri todella tahmeasti virtuaalikoneella, luultavasti pienen resurssimäärän takia. En siis taida käyttää virutaalikonetta tämän ohjelman käyttöön pahemmin.
+Kuitenkin testiksi loin omalle yksityiselle kanavalle uuden alakanavan ja lähetin viestin.
+
+![discord-viesti](discord-videsti.png)
