@@ -46,3 +46,7 @@ Virtuaalikoneen resurssit:
 - 9.18 tein uuden VM koneen, en asettanut ISOa luonnin yhteydessä vaan laitoin sen jälkeenpäin asetuksista:
 
 ![settings](SettingsISO.png)
+
+- 9.22 Tämä näytti onnistuvan, ohjeista tuttu bootloader tuli esiin, valitsin "Live system (amd64)"
+
+![bootloader](bootloader.png)
