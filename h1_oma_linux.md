@@ -50,3 +50,13 @@ Virtuaalikoneen resurssit:
 - 9.22 Tämä näytti onnistuvan, ohjeista tuttu bootloader tuli esiin, valitsin "Live system (amd64)"
 
 ![bootloader](bootloader.png)
+
+- 9.25 Työpöytä tuli esiin, kokeilin toimivuutta navigoimalla selaimella wikipediaan. Myös siis yhteys toimii.
+- 9.28 Ajoin työpöydältä löytyvän Install Debian installerin
+- 9.30 Valitsin kielen (englanti) ja paikan (Helsinki), vaihdoin näppäimistön suomalaiseksi, ja testasin ääkkösiä
+- 9.31 Partitions osuudessa valitsin Erase disk
+- 9.31 Kirjoitin pääkäyttäjätiedot (nimi, login, tietokoneen nimi, salasana) ja aloitin installaation
+- 9.42 Asennus on valmis, käynnistän koneen uudelleen
+- 9.46 Linux aukesi työpöytään, kaikki näytti menevän onnistuneesti
+
+![complete](installcomplete.png)
