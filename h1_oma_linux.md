@@ -37,3 +37,12 @@ Virtuaalikoneen resurssit:
 
 - 22:30 Käynnistin virtuaalikoneen (Start -> Start with GUI)
   - Törmäsin virheeseen "VT-x is disabled in the BIOS for all CPU modes", minun pitäisi siis laittaa tämä päälle koneeni BIOS asetuksissa.
+- 9.10 Uusi yritys, virtualisaatioasetukset päälle BIOSissa ja VirtualBox käyntiin
+- 9.13 Virtuaalikoneen boottaus epäonnistui:
+
+![VMError](VMError.png)
+
+- Saman ISOn syöttäminen ylläolevaan tuotti saman virheen
+- 9.18 tein uuden VM koneen, en asettanut ISOa luonnin yhteydessä vaan laitoin sen jälkeenpäin asetuksista:
+
+![settings](SettingsISO.png)
