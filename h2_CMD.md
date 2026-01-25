@@ -1,4 +1,4 @@
-# H2 Komentaja Pingviini
+<img width="1330" height="834" alt="image" src="https://github.com/user-attachments/assets/8399f912-ece4-4ec7-ba37-c1e5812f7722" /># H2 Komentaja Pingviini
 
 Tätä tehtävää suoritetaan käyttäen VirtualBoxia.
 Host-tietokoneena toimii pöytätietokone:
@@ -56,9 +56,29 @@ sudo apt-get -y install crawl htop ranger
 
 - Tämä irroitti f10 toiminnot terminaaliohjelman hallusta, ja se toimi. Syy sille, miksi pelkkä oikotiennäppäimen poisto ei toiminut, tai sille, miksi tämä asetus löytyy käytännössä kahdesta eri paikasta, on minulle mysteeri.
 
-- 19.00 Tästä selviydyttyäni kokeilen muita asentamiani ohjelmia. Seuraavaksi vuorossa on ranger. Avaan sen komennolla
+- 19.00 Tästä selviydyttyäni kokeilen muita asentamiani ohjelmia. Seuraavaksi vuorossa on ranger. Avaan sen komennolla:
 
 ```ranger```
+
+- Ranger avautui odotetusti, joskin tallennettuja tiedostoja ei kotihakemistossa tällä hetkellä ole:
+
+[ranger](ranger.png)
+
+- Rangerilla pääsen kuitenkin selaamaan vaikka /etc/ tiedostoja:
+
+[ranger-etc](ranger-etc.png)
+
+- 19.06 Viimeiseksi kokeilen crawlin toimivuutta:
+
+```crawl```
+
+- Tämä avaa odotetusti DCCS :n päävalikon:
+
+[dccs-menu](dccs-menu.png)
+
+- Peli käynnistyy normaalisti, ja aloitan uuden pelin luomalla Merfolk Transmuterin, nimeltään Teuvo:
+
+[teuvo](teuvo.png)
 
 # Lähteet
 
