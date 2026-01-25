@@ -2,9 +2,9 @@
 
 Tätä tehtävää suoritetaan käyttäen VirtualBoxia.
 Host-tietokoneena toimii pöytätietokone:
-  Processor	Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz   4.00 GHz
-  Installed RAM	16,0 GB
-  Graphics Card	NVIDIA GeForce RTX 3080 (10 GB)
+- Processor	Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz   4.00 GHz
+- Installed RAM	16,0 GB
+- Graphics Card	NVIDIA GeForce RTX 3080 (10 GB)
 
 ## A - Micro
 Tehtävänä on asentaa Micro tekstieditori.
