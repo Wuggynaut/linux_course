@@ -13,7 +13,7 @@ Tehtävänä on asentaa Micro tekstieditori.
 ```sudo apt-get install micro```
 - Tämä asensi Micron koneelle:
 
-(micro-asennus)[micro-asennus.png]
+[micro-asennus](micro-asennus.png)
 
 - Testatakseni, että Micro on asentunut, käynnistän sen kirjoittamalla komennon
 
@@ -21,7 +21,7 @@ Tehtävänä on asentaa Micro tekstieditori.
 
 - Micro lähtee käyntiin odotetusti:
 
-(micro)[micro.png]
+[micro](micro.png)
 
 ## B - Apt
 Tehtävänä on asentaa kolme itselleni uutta komentoriviohjelmaa, ja kokeilla niitä.
@@ -42,6 +42,9 @@ sudo apt-get -y install crawl htop ranger
 ```htop```
 
 - Ohjelma avautuu normaalisti ja näyttää meneillään olevat prosessit
+
+[htop](htop.png)
+
 - **Ongelma:** Ohjelman sulkukomento F10 avaakin terminaalin File-valikon:
 
 [menu-ongelma](menu-ongelma.png)
