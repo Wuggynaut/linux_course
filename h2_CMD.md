@@ -13,7 +13,7 @@ Tehtävänä on asentaa Micro tekstieditori.
 ```sudo apt-get install micro```
 - Tämä asensi Micron koneelle:
 
-[micro-asennus](micro-asennus.png)
+![micro-asennus](micro-asennus.png)
 
 - Testatakseni, että Micro on asentunut, käynnistän sen kirjoittamalla komennon
 
@@ -21,7 +21,7 @@ Tehtävänä on asentaa Micro tekstieditori.
 
 - Micro lähtee käyntiin odotetusti:
 
-[micro](micro.png)
+![micro](micro.png)
 
 ## B - Apt
 Tehtävänä on asentaa kolme itselleni uutta komentoriviohjelmaa, ja kokeilla niitä.
@@ -35,7 +35,7 @@ sudo apt-get -y install crawl htop ranger
 
 - Kaikesta päätellen asennus on onnistunut:
 
-[kolmoisasennus](kolmoisasennus.png)
+![kolmoisasennus](kolmoisasennus.png)
 
 - 18.36 Koetan avata htopin komennolla
 
@@ -43,19 +43,19 @@ sudo apt-get -y install crawl htop ranger
 
 - Ohjelma avautuu normaalisti ja näyttää meneillään olevat prosessit
 
-[htop](htop.png)
+![htop](htop.png)
 
 - **Ongelma:** Ohjelman sulkukomento F10 avaakin terminaalin File-valikon:
 
-[menu-ongelma](menu-ongelma.png)
+![menu-ongelma](menu-ongelma.png)
 
 - Lähdin etsimään ratkaisua oikotienäppäimistä. Erotiun F10 näppäimen terminaalin oikotienäppäimistä menemällä Edit -> Preferences -> Shortcut ja poistamalla näppäimen kohdasta 'Show Menubar Temporarily'. Tämä ei ole toiminto jolle nään muutenkaan hyötyä.
 
-[shortcut-siivous](shortcut-siivous.png)
+![shortcut-siivous](shortcut-siivous.png)
 
 - Jostain syystä tämä ei lopettanut menun avaamista f10. Etsin vastausta xfce dokumentaatiosta, ja löysin toisen asetuksen, joka liittyy valikon oikotiehen. Tämä löytyy Edit -> Preferences -> Disable menu shortcut key.
 
-[advanced-shortcut](advanced-shortcut.png)
+![advanced-shortcut](advanced-shortcut.png)
 
 - Tämä irroitti f10 toiminnot terminaaliohjelman hallusta, ja se toimi. Syy sille, miksi pelkkä oikotiennäppäimen poisto ei toiminut, tai sille, miksi tämä asetus löytyy käytännössä kahdesta eri paikasta, on minulle mysteeri.
 
@@ -65,11 +65,11 @@ sudo apt-get -y install crawl htop ranger
 
 - Ranger avautui odotetusti, joskin tallennettuja tiedostoja ei kotihakemistossa tällä hetkellä ole:
 
-[ranger](ranger.png)
+![ranger](ranger.png)
 
 - Rangerilla pääsen kuitenkin selaamaan vaikka /etc/ tiedostoja:
 
-[ranger-etc](ranger-etc.png)
+![ranger-etc](ranger-etc.png)
 
 - 19.06 Viimeiseksi kokeilen crawlin toimivuutta:
 
@@ -77,11 +77,11 @@ sudo apt-get -y install crawl htop ranger
 
 - Tämä avaa odotetusti DCCS :n päävalikon:
 
-[dccs-menu](dccs-menu.png)
+![dccs-menu](dccs-menu.png)
 
 - Peli käynnistyy normaalisti, ja aloitan uuden pelin luomalla Merfolk Transmuterin, nimeltään Teuvo:
 
-[teuvo](teuvo.png)
+![teuvo](teuvo.png)
 
 # Lähteet
 
