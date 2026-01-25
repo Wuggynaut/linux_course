@@ -1,4 +1,4 @@
-<img width="1330" height="834" alt="image" src="https://github.com/user-attachments/assets/8399f912-ece4-4ec7-ba37-c1e5812f7722" /># H2 Komentaja Pingviini
+# H2 Komentaja Pingviini
 
 Tätä tehtävää suoritetaan käyttäen VirtualBoxia.
 Host-tietokoneena toimii pöytätietokone:
