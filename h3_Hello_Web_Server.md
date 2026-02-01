@@ -114,7 +114,7 @@ Headerien selitykset:
 
 | Header | Selitys |
 |--------|---------|
-| **HTTP/1.1 200 OK** | Statuskoodi: 200 = pyyntö onnistui. Muita: 404 (ei löydy), 500 (palvelinvirhe) |
+| **HTTP/1.1 200 OK** | Statuskoodi: 200 = pyyntö onnistui.|
 | **Date** | Milloin palvelin lähetti vastauksen |
 | **Server** | Palvelinohjelmisto ja versio (Apache 2.4.66 Debian) |
 | **Last-Modified** | Milloin tiedostoa viimeksi muokattiin |
