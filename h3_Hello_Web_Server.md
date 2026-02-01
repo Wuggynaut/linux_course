@@ -110,7 +110,8 @@ curl hattu.example.com
 
 ![hattucurl-headers](hattucurl-headers.png)
 
-- Headerien selitykset:
+Headerien selitykset:
+
 | Header | Selitys |
 |--------|---------|
 | **HTTP/1.1 200 OK** | Statuskoodi: 200 = pyyntö onnistui. Muita: 404 (ei löydy), 500 (palvelinvirhe) |
