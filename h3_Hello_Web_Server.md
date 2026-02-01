@@ -71,12 +71,12 @@ mkdir /home/arima/publicsites/hattu
 micro /home/arima/publicsites/hattu/index.html
 ```
 
-![indexcode](indexcode.png)
+```
+<h1>Tervetuloa HATTU sivulle</h1>
+<p>Tämä on ainoa hattuihin erikoistunut sivu, jonka tarvitset.</p>
+```
 
 - Navigoidessa sivu näkyy, mutta mukana on myös esteettinen ongelma: Ääkköset eivät näy oikein.
-
-![charsetproblem](charsetproblem.png)
-
 - Korjaamme tämän seuraavassa tehtävässä.
 
 ## E - HTML5 sivu
