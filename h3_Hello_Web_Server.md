@@ -43,4 +43,86 @@ Tässä tehtävässä otan vanhan virtuaalihostin pois käytöstä, ja teen uude
 
 - Ensin tehdään uusi sivu komennolla:
 
-    sudoedit /etc/apache2/sites-available/hattu.example.com.conf
+```
+sudoedit /etc/apache2/sites-available/hattu.example.com.conf
+```
+
+- Tiedostoon laitamme sivun konfiguraatiot:
+
+![hattuconf](hattuconf.png)
+
+- Seuraavaksi poistamme vanhan sivun käytöstä, ja laitamme uuden tilalle:
+
+```
+sudo a2dissite arima.conf
+sudo a2ensite hattu.example.com.conf
+```
+
+- Tämän jälkeen käynnistämme serverin uudelleen:
+
+```
+sudo systemctl restart apache2
+```
+
+- Sitten teemme hattu-kansion, sinne index tiedoston ja siihen sivun yksinkertaisen html-koodin:
+
+```
+mkdir /home/arima/publicsites/hattu
+micro /home/arima/publicsites/hattu/index.html
+```
+
+![indexcode](indexcode.png)
+
+- Navigoidessa sivu näkyy, mutta mukana on myös esteettinen ongelma: Ääkköset eivät näy oikein.
+
+![charsetproblem](charsetproblem.png)
+
+- Korjaamme tämän seuraavassa tehtävässä.
+
+## E - HTML5 sivu
+Tässä tehtävässä teemme validin HTML5 sivun.
+- Jotta ääkköset näkyisi, index.html tiedostoon pitää lisätä UTF-8 meta-tagi. Formatoin sen muutenkin paremmaksi:
+
+![htmlrefactor](htmlrefactor.png)
+
+- Sivu näyttää ääkköset nyt oikein, ja Firefoxikin tunnistaa, että sivu on suomenkielinen.
+
+![indexfixed](indexfixed.png)
+
+- Myös HTML validaattorisivu https://validator.w3.org/nu näyttää sivun olevan validi:
+
+![sitevalid](sitevalid.png)
+
+## F - Curl
+Tässä osiossa selitän ja demonstroin curl komentoa.
+
+- curl komento näyttää sivun sisällön. Esimerkkinä komento:
+
+```
+curl hattu.example.com
+```
+
+- Tulostaa juuri tekemäni html-sisällön:
+
+![hattucurl](hattucurl.png)
+
+- curl -I puolestaan näyttää vain HTTP-headerit:
+
+![hattucurl-headers](hattucurl-headers.png)
+
+- Headerien selitykset:
+| Header | Selitys |
+|--------|---------|
+| **HTTP/1.1 200 OK** | Statuskoodi: 200 = pyyntö onnistui. Muita: 404 (ei löydy), 500 (palvelinvirhe) |
+| **Date** | Milloin palvelin lähetti vastauksen |
+| **Server** | Palvelinohjelmisto ja versio (Apache 2.4.66 Debian) |
+| **Last-Modified** | Milloin tiedostoa viimeksi muokattiin |
+| **ETag** | Tunniste tiedostolle, joka auttaa välimuistia tunnistamaan muutokset |
+| **Content-Length** | Vastauksen koko tavuina (243 tavua) |
+| **Content-Type** | Sisällön tyyppi (text/html = HTML-sivu) |
+
+## Lähteet:
+- https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/
+- https://httpd.apache.org/docs/2.4/vhosts/name-based.html
+- https://www.w3schools.com/bash/bash_curl.php
+- https://en.wikipedia.org/wiki/HTTP_ETag
