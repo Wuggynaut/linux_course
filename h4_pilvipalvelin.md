@@ -1,0 +1,128 @@
+# H4 - Pilvipalvelin
+
+Tehtävän tarkoituksena on laittaa pystyyn pilvipalvelinn ja dokumentoida prosessi. Tehtävä osittain tapahtui jo tunnilla.
+
+## Käyttöympäristön tiedot
+Tätä tehtävää suoritetaan käyttäen VirtualBoxia. Host-tietokoneena toimii pöytätietokone:
+
+    Processor Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz 4.00 GHz
+    Installed RAM 16,0 GB
+    Graphics Card NVIDIA GeForce RTX 3080 (10 GB)
+
+## A - Virtuaalipalvelimen vuokraus
+Tämä osio tapahtui jo tunnilla. Vuokrasin palvelimen UpCloud palvelusta.
+
+## B - Alkutoimet
+Tässä osiossa teen tarvittavat alkutoimet palvelimella: palomuurin asennuksen, root-tunnuksen kiinnilaiton ja päivitykset.
+
+### Palomuuri
+
+- Otimme SSH yhteyden palvelimeen, ja ensimmäisenä asennamme palomuurin. Ennen sitä kuitenkin päivitämme paketit:
+
+```
+sudo apt-get update
+```
+
+- Koska olemme vielä root-käyttäjä, voisimme tehdä komennon ilman sudoa. On kuitenkin hyvä sisällyttää se komentoihin jotta se näkyy lokeissa.
+- Seuraavaksi asennamme palomuurin ja laitamme sen päälle:
+
+```
+sudo apt-get install ufw
+sudo ufw allow 22/tcp
+sudo ufw enable
+```
+
+![palomuuri](palomuuri.png)
+
+- Allow 22/tcp varmistaa, että SSH yhteys toimii palomuurin kanssa. Jotta saamme palomuurin päälle, on palvelin rebootattava:
+
+```
+sudo reboot
+```
+
+### Käyttäjä
+
+- Ensin luomme käyttäjän, ja annamme tälle vahvan salasanan.
+
+```
+sudo adduser arima
+```
+
+![uusikayttaja](uusikayttaja.png)
+
+(Locale-varoitukset ovat ärsyttäviä, mutta eivät estä komentojen ajamista.)
+
+- Seuraavaksi annetaan käyttäjälle tarvittavat oikeudet.
+
+```
+sudo adduser arima sudo
+sudo adduser arima adm
+```
+
+- Jotta saamme yhteyden käyttäjään, laitamme tämän hyväksymään SSH-avaimemme. Ensin vaihdamme arima käyttäjäksi:
+
+
+```
+su - arima
+```
+
+- Sitten luomme /.ssh/ kansion
+
+```
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+```
+
+- Sitten laitamme public avaimemme authorized-keys kansioon.
+
+```
+nano ~/.ssh/authorized_keys
+```
+
+![pubkey](pubkey.png)
+
+- Asetamme oikeudet, ja poistumme käyttäjältä takaisin root-käyttäjäksi
+
+```
+chmod 600 ~/.ssh/authorized_keys
+exit
+```
+
+![keykomennot](keykomennot.png)
+
+- Nyt testaamme ottamalla suoran yhteyden arima-käyttäjään
+
+![arima-yhteys](arima-yhteys.png)
+
+### Root-tunnuksen sulkeminen
+
+- Seuraavaksi lukitsemme root-tunnuksen:
+
+```
+sudo usermod --lock root
+```
+
+- Sitten poistamme SSH-root yhteyden käytöstä:
+
+```
+sudoedit /etc/ssh/sshd_config
+```
+
+![RootSSHPermit](RootSSHPermit.png)
+
+```
+sudoedit service ssh restart
+```
+
+### Pakettipäivitys
+
+- On tärkeää pitää paketit ajantasalla.
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+- Jotta tekstinkäsittely on mukavampaa, asennamme nanon sijalle micron ja asetamme sen oletustekstityökaluksi:
+
+- 
