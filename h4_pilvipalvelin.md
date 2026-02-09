@@ -125,4 +125,42 @@ sudo apt-get upgrade
 
 - Jotta tekstinkäsittely on mukavampaa, asennamme nanon sijalle micron ja asetamme sen oletustekstityökaluksi:
 
-- 
+```
+sudo apt-get install micro
+sudo update-alternatives --config editor
+```
+
+![microdefault](microdefault.png)
+
+## C - Palvelinasennus
+
+Tehtävänä on asentaa virtuaalipalvelimelle Apache-webpalvelin, korvata testisivu ja tehdä sivu julkisesti näkyväksi.
+
+- Ensin asennamme Apache2 ja teemme sille reitin palomuuriin:
+
+```
+sudo apt-get install apache2
+sudo ufw allow 80/tcp’
+```
+
+- Käymme läpi sivunpystytys-prosedyyrin. Tarkempi selonteko tästä löytyy edellisestä tehtävästä: [Linkki](h3_Hello_Web_Server.md).
+
+```
+echo terve | sudo tee /var/www/html/index.html
+sudoedit /etc/apache2/sites-available/arima.conf
+sudo a2dissite 000-default.conf
+sudo a2ensite arima.conf
+mkdir publicsites
+mkdir publicsites/arima/
+micro publicsites/arima/index.html
+sudo systemctl restart apache2
+```
+
+- Kaikkien näiden operaatioiden jälkeen navigoin serverin IP osoitteeseen toisella koneella. index.html teksti näkyy oikein:
+
+![index-online](index-online.png)
+
+## Lähteet
+- https://terokarvinen.com/linux-palvelimet/#h0-hei-weppi
+- https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
+- https://unix.stackexchange.com/questions/42726/how-do-i-change-the-default-text-editor-in-the-debian-squeeze-distro
