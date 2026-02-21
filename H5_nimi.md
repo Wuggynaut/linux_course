@@ -109,7 +109,7 @@ wikimedia.org mail is handled by 10 mx-in1001.wikimedia.org.
 ```
 
 - Sivun MX-tietueet, eli mihin sähköposti ohjataan kun lähetetään @wikimedia.org-osoitteeseen.
-- Luku 10 on prioriteetti. Se on molemmissa palvelimissa sama, joten liikenne jakautuu niiden välille tasaisesti.
+    - Luku 10 on prioriteetti. Se on molemmissa palvelimissa sama, joten liikenne jakautuu niiden välille tasaisesti.
 
 # Lähteet
 - https://uptimerobot.com/knowledge-hub/devops/dns-redirect-guide/#what-is-a-dns-redirect
