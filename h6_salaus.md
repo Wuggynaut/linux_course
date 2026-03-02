@@ -80,6 +80,8 @@ sudo nano /etc/apache2/sites-available/arima.conf
 Redirect permanent / https://arimattitoivonen.com/
 ```
 
+![redirect](redirect.png)
+
 - Ja otamme muutokset käyttöön:
 
 ```
