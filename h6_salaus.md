@@ -2,6 +2,8 @@
 
 Tässä tehtävässä suojaamme verkkosivumme HTTPS-yhteydellä.
 
+**HUOMIO!** Tein tehtävän kertaalleen, mutta teknisen virheen takia menetin sekä ottamani screenshotit, että valtaosan kirjoittamastani tekstistä. Iso osa raportista onkin tästä syystä kirjoitettu takautuvasti muistista, ja valitettavasti kuvia prosessin kulusta ei ole. Koetan parhaani mukaan laittaa konsolin palautuksia tekstimuodossa, ja ottaa kuvia uudelleen.
+
 ## Käyttöympäristön tiedot
 Tätä tehtävää suoritetaan käyttäen VirtualBoxia. Host-tietokoneena toimii pöytätietokone:
 
@@ -36,27 +38,26 @@ sudo certbot --apache -d arimattitoivonen.com -d www.arimattitoivonen.com
 
 ![sert-virhe](sert-virhe.png)
 
-- Viestin mukaan sertifikaatti on hankittu oikein, mutta Apache-asennus epäonnistui.
-- Avaamm HTTP-vhostin
+- Vastauksen mukaan sertifikaatti on hankittu oikein, mutta Apache-asennus epäonnistui, koska ServerName / ServerAlias ei ole asetettu oikein.
+- Avaamme HTTP-vhostin
 
 ```
 sudo micro /etc/apache2/sites-available/arima.conf
 ```
 
-![vhost-tarkistus](vhost-tarkistus.png)
+- Täällä näemmekin, että näissä on väärä ServerName ja -Alias, aijemmin testikäytössä ollut "arima.example.com"
+- Päivitämme sen vastaamaan todellista domainia:
 
-- Täällä näemmekin, että näissä on väärä ServerName ja -Alias.
-- Päivitämme sen:
-
-![vhost-korjaus](vhost-korjaus.png)
+```
+ServerName arimattitoivonen.com
+ServerAlias www.arimattitoivonen.com
+```
 
 - Testaamme vielä että sivu toimii:
 
 ```
 sudo apache2ctl configtest
 ```
-
-![configtest_onnistui](configtest_onnistui.png)
 
 - "Syntax OK" eli onnistui.
 - Sitten vielä käynnistämme serverin uudestaan ja asennamme sertifikaatin uudelleen.
@@ -66,5 +67,100 @@ sudo systemctl reload apache2
 sudo certbot install --cert-name arimattitoivonen.com
 ```
 
+- Vastaus ei valittanut konflikteista, joten asennus meni onnistuneesti.
+- Lisäämme vielä HTTP-vhostiin automaattisen HTTPS-ohjauksen:
+
+```
+sudo nano /etc/apache2/sites-available/arima.conf
+```
+
+- Sisältöön laitamme:
+
+```
+Redirect permanent / https://arimattitoivonen.com/
+```
+
+- Ja otamme muutokset käyttöön:
+
+```
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+- Testaamme vielä, että uudelleenohjaus toimii:
+
+```
+curl -I http://arimattitoivonen.com
+curl -I http://www.arimattitoivonen.com
+```
+
+- Nämä molemmat palauttivat tarvittavat osat:
+
+```
+HTTP/1.1 301 Moved Permanently
+Location: https://arimattitoivonen.com/
+```
+
+- Tässä vaiheessa törmäämme ongelmaan kun koetamme testata HTTPS yhteyttä selaimella, ja saamme "connection timeout"
+- Tämä ei ole certbot-ongelma vaan yhteys ei pääse palvelimelle asti. Todennäköisin syypää on palomuuri.
+- Katsomme, mitkä portit ovat auki palomuurissa:
+
+```
+sudo ufw status
+```
+
+- Palaute kertoo, että portt 80 on auki, mutta tarvitsemamme portti 443 ei ole.
+- Korjaamme tämän ajamalla:
+
+```
+sudo ufw allow 443
+```
+
+![ufw-status](ufw-status.png)
+
+- Nyt setkä 80, että 443 portti on auki. Testaamme sivun toimivuutta selaimella:
+
+![https-toimii](https-toimii.png)
+
+# B - SSL Testi
+Tässä tehtävässä testaamme sivujen TLS:n käyttämäällä SSLLabs laadunvarmistustyökalua.
+
+- Alkuperäinen arvosanamme oli **A**, mikä tarkoittaa että sivut ovat hyvällä tasolla.
+- Testissä tuli kuitenkin kaksi huomioitavaa kohtaa ilmi:
+
+```
+DNS CAA: No
+```
+
+- Tämä tarkoittaa, että sivulle ei ole asetettu CAA-tietuetta, joka kertoo mikä varmentaja voi myöntää sertifikaatteja domainille.
+- Korjaamme tämän lisäämällä Namecheapin puolella CAA tietueet:
+
+![CAA](CAA.png)
+
+- Toinen huomioitava osa oli:
+
+```
+HSTS: No
+```
+
+- Tämä on HTTP Strict Transport Security, joka estää HTTP-yhteydet kokonaan.
+- Tämän saamme päälle lisäämällä HTTPS-vhostiin headerin:
+
+![HSTS](HSTS.png)
+
+- Ja ajamalla komennon:
+
+```
+sudo a2enmod headers
+sudo systemctl reload apache2
+```
+
+- Näiden muutosten jälkeen SSLLabs arvosanamme on noussut **A+**.
+
+![SSLLabs](SSLLabs.png)
+
 # Lähteet
 - https://certbot.eff.org/instruction
+- https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample
+- https://letsencrypt.org/docs/caa/
+- https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum
