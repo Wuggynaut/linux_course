@@ -100,3 +100,9 @@ Discord pyöri todella tahmeasti virtuaalikoneella, luultavasti pienen resurssim
 Kuitenkin testiksi loin omalle yksityiselle kanavalle uuden alakanavan ja lähetin viestin.
 
 ![viesti](discord-viesti.png)
+
+## Lähteet
+- https://terokarvinen.com/linux-palvelimet/
+- https://www.gnu.org/philosophy/free-sw.html
+- https://aaltodoc.aalto.fi/items/a128f25b-cdb3-416e-b007-62d639a1c228
+- https://terokarvinen.com/2021/install-debian-on-virtualbox/
