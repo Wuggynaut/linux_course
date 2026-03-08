@@ -123,6 +123,7 @@ Headerien selitykset:
 | **Content-Type** | Sisällön tyyppi (text/html = HTML-sivu) |
 
 ## Lähteet:
+- https://terokarvinen.com/linux-palvelimet/
 - https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/
 - https://httpd.apache.org/docs/2.4/vhosts/name-based.html
 - https://www.w3schools.com/bash/bash_curl.php
