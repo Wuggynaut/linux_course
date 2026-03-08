@@ -79,7 +79,6 @@ bash helloworld.sh
 ## B - Tehtävien tarkastus
 Tässä tehtävässä vain tarkastan kurssin aijemmat tehtävät, ja lisään mahdollisesti puuttuvat lähdeviitteet tms. Alla on linkki kaikkiin aijempiin raportteihin:
 
-- [h0_hei_web](h0-hei_web.md)
 - [h1_oma_linux](h1_oma_linux.md)
 - [h2_CMD](h2_CMD.md)
 - [h3_hello_web_server](h3_Hello_Web_Server.md)
