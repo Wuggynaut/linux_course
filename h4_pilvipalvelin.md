@@ -161,6 +161,7 @@ sudo systemctl restart apache2
 ![index-online](index-online.png)
 
 ## Lähteet
+- https://terokarvinen.com/linux-palvelimet/
 - https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/
 - https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/
 - https://unix.stackexchange.com/questions/42726/how-do-i-change-the-default-text-editor-in-the-debian-squeeze-distro
