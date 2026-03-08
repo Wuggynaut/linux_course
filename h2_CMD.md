@@ -291,7 +291,7 @@ micro test.python
 ![micro-lua](micro-lua.png)
 
 # Lähteet
-
+- https://terokarvinen.com/linux-palvelimet/
 - https://docs.xfce.org/apps/xfce4-terminal/preferences
 - https://terokarvinen.com/2020/command-line-basics-revisited
 - https://www.geeksforgeeks.org/linux-unix/grep-command-in-unixlinux/
