@@ -162,6 +162,7 @@ sudo systemctl reload apache2
 ![SSLLabs](SSLLabs.png)
 
 # Lähteet
+- https://terokarvinen.com/linux-palvelimet/
 - https://certbot.eff.org/instruction
 - https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample
 - https://letsencrypt.org/docs/caa/
