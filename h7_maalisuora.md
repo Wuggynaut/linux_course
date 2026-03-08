@@ -98,7 +98,7 @@ micro sysinfo.sh
 
 ![sysinfo-script](sysinfo-script.png)
 
-- Selitykset skriptille:
+**Selitykset skriptille**
 
 ```
 #!/bin/bash
