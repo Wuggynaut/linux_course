@@ -112,6 +112,7 @@ wikimedia.org mail is handled by 10 mx-in1001.wikimedia.org.
     - Luku 10 on prioriteetti. Se on molemmissa palvelimissa sama, joten liikenne jakautuu niiden välille tasaisesti.
 
 # Lähteet
+- https://terokarvinen.com/linux-palvelimet/
 - https://uptimerobot.com/knowledge-hub/devops/dns-redirect-guide/#what-is-a-dns-redirect
 - https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/
 - https://linuxize.com/post/how-to-use-dig-command-to-query-dns-in-linux/
