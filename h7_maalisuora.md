@@ -200,6 +200,8 @@ seuraavalle ylläpitäjälle” kohdan yläpuolelta.
 ### 0. Puhdas Linux
 - Tämä tehtävä tehdään uudelle Linux koneelle, tätä varten luomme uuden virtuaalikoneen VirtualBoxissa ja asennan siihen Linuxin.
 
+![puhdaskone](puhdaskone.png)
+
 ### 1. LAMP asennus
 - LAMP-pino tarkoittaa Linux, Apache, MySQL/MariaDB, PHP
 - Kurssillamme emme käsitelleet tietokantaohjelmistoa tai PHP :ta, mutta koska minulla on näistä kokemusta aijemmin, teen ne suoraan tehtävänannon mukaisesti.
@@ -473,10 +475,12 @@ sudo micro /etc/apache2/sites-available/notkeahaku.conf
 
 ```
 sudo a2ensite notkeahaku.conf
-sudo systemctl reload apache2
+sudo systemctl restart apache2
 ```
 
-- Ja testaamme selaimella 
+- Ja testaamme selaimella:
+
+![notkea-testi](notkea-testi.png)
 
 ## Lähteet
 - https://terokarvinen.com/linux-palvelimet/
