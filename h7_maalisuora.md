@@ -247,7 +247,7 @@ sudo mariadb
 
 - Tähän luomme tietokannan ja käyttäjän
 
-```sql
+```
 CREATE DATABASE asiakkaat;
 CREATE USER 'lampkayttaja'@'localhost' IDENTIFIED BY 'LamppuTynka!VauvaMies0';
 GRANT ALL PRIVILEGES ON asiakkaat.* TO 'lampkayttaja'@'localhost';
@@ -329,6 +329,154 @@ sudo chmod 644 /home/maija/public_html/index.php
 ```
 
 - Ja testaamme selaimella menemällä osoitteeseen `http://localhost/~maija/`
+
+![asiakas-ohjelma](asiakas-ohjelma.png)
+
+### 3. goodmorning.sh
+
+- Luomme skriptin /usr/local/bin/ kansioon ja asetamme sille oikeudet, jotta se tulee kaikkien ajettavaksi:
+
+```
+sudo micro /usr/local/bin/goodmorning
+```
+
+![goodmorning-code](goodmorning-code.png)
+
+```
+sudo chmod a+x /usr/local/bin/goodmorning
+```
+
+![goodmorning](goodmorning.png)
+
+### 4. Käyttäjät ja kotisivut
+
+- Maija käyttäjä on jo luotu. Luomme muut käyttäjät.
+
+```
+sudo adduser nnertola
+sudo adduser hvars
+sudo adduser emikkonen
+sudo adduser eoljysaari
+sudo adduser evahakaahka
+```
+
+- Kotisivujen tekemisen helpottamiseksi teemme skriptin joka luo oletuskotisivun käyttäjille, ja ajamme sen
+
+```
+micro indexperuser.sh
+```
+
+![indexperuser](indexperuser.png)
+
+```
+bash indexperuser.sh
+```
+
+- Testaamme selaimella navigoimalla `http://localhost/~nnertola/`:
+
+![nnertola](nnertola.png)
+
+- Teemme vielä password.txt tiedoston ja asetamme sille turvalliset oikeudet:
+
+```
+micro password.txt
+```
+
+![passwordtxt](passwordtxt.png)
+
+```
+chmod 600 password.txt
+```
+
+### 5. Hei Python
+
+- Teemme skriptin maijan kotikansioon, ja asetamme oikeudet:
+
+```
+sudo micro /home/maija/hei.py
+```
+
+![heipython-code](heipython-code.png)
+
+```
+sudo chown maija:maija /home/maija/hei.py
+sudo chmod 755 /home/maija/hei.py
+```
+
+- Testaamme, että ohjelma toimii Maijalla:
+
+```
+sudo -u maija python3 /home/maija/hei.py
+```
+
+![heipython-execute](heipython-execute.png)
+
+### 6. Etäkäyttö
+
+- Asennamme SSH-paketin ja kirjaudumme ensin maija-käyttäjäksi:
+
+```
+sudo apt-get install -y openssh-client
+sudo su - maija
+```
+
+- Luomme avainparin:
+
+```
+ssh-keygen -t rsa -b 4096
+```
+
+Ja sitten kopioimme julkisen avaimen samalle tunnukselle:
+
+```
+ssh-copy-id maija@localhost
+```
+
+![ssh-copy](ssh-copy.png)
+
+- Testaamme:
+
+```
+ssh maija@localhost
+exit
+```
+
+![ssh-test](ssh-test.png)
+
+### 7. EvilNinja Beacon lokitutkina
+
+Tätä osaa ei voi kunnolla tehdä, koska olen omalla puhtaalla virtuaalilinuxilla. Kuitenkin lokitiedostojen tutkiminen tapahtuisi suunnilleen tällä komennolla:
+
+```
+sudo grep -ri "evilninja" /var/log/ 2>/dev/null
+```
+
+### 8. Nimipohjainen virtuaalipalvelu
+
+- Simuloimme DNS hosts-tiedostolla lisäämällä sinne rivin
+
+```
+sudo micro /etc/hosts
+```
+
+![hosts-notkea](hosts-notkea.png)
+
+- Luomme virtualhostin:
+
+```
+sudo micro /etc/apache2/sites-available/notkeahaku.conf
+```
+
+![notkea-conf](notkea-conf.png)
+
+- Otamme sen käyttöön:
+
+```
+sudo a2ensite notkeahaku.conf
+sudo systemctl reload apache2
+```
+
+- Ja testaamme selaimella 
 
 ## Lähteet
 - https://terokarvinen.com/linux-palvelimet/
