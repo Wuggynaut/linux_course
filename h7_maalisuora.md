@@ -153,6 +153,182 @@ sysinfo
 
 ## D - Laboratorio
 Tässä tehtävässä teen jonkun aijemmista kurssin arvioitavista laboratorioista. Valitsin ict4tn021-3004 ti – alkukevät 2019 -kurssin laboratorion.
+Laboratorion tehtävänanto on seuraava:
+
+```
+## Tervetuloa
+Olet nyt Notkea Haku Oy:n tietohallintopäällikkö – ja -osasto. Ja sait firmat keskitetyn hallinnan toimimaan.
+Asenna käyttöjärjestelmä koneen kovalevylle.
+## LAMP
+Asenna LAMP. Tee esimerkkiohjelma, joka hakee tietueita tietokannasta. Maija ryhtyy ohjelmoimaan LAMP:illa. Tee maijalle
+käyttäjä ja laita esimerkkiohjelma näkymään osoitteessa http://localhost/~maija/ . Esimerkkiohjelman tulee tulostaa
+näytölle muutamia tietueita asiakastietokannasta, niiden joukossa asiakkaamme Oogle ja Zonama.
+## Goodmorning.sh
+Tee goodmorning.sh -skripti, joka toivottaa hyvää huomenta, kertoo koneen IP-osoitteen ja päivämäärän. Voit näyttää
+myös muita tietoja, max 5 riviä. Laita skripti niin, että se toimii kaikilla käyttäjillä kaikista hakemistoista.
+## Käyttäjät
+Työntekijämme ovat toimitusjohtaja Nakke Nertola, Håkan Värs, Einari Mikkonen, Einari Öljysaari, Maija Maijala ja Eija
+Vähäkäähkä. Tee kaikille käyttäjille esimerkkikotisivut.
+Kirjoita käyttäjien nimet, käyttäjätunnukset ja salasanat tiedostoon password.txt kotihakemistossasi. Aseta tiedostolle
+turvalliset oikeudet.
+## Hei Python
+Laita maijan kotihakemistoon Pythonin “Hei maailma” skripti. Skriptin tulee olla osoitteessa /home/maija/hei.py.
+## Etäkäyttöä
+Haluamme käyttää konetta Afrikasta, turvallisesti. Asenna tarvittavat palvelut. Lisää password.txt -tiedostoon
+esimerkkikomennot kullekin käyttäjälle, jolla etäkäyttöyhteys avataan. Käytä niin julkista osoitetta kuin labrassa on
+mahdollista.
+Automatisoi kirjautuminen maija-käyttäjältä ssh:n yli tälle samalle maija-tunnukselle. Käytä julkisen avaimen menetelmää
+kirjautumiseen.
+## EvilNinja Beacon
+EvilNinja -mato leviää verkoissa. Ennakkotietojen mukaan kaikissa evilninjan yhteydenotoissa lukee sen nimi.
+Selvitä lokeista, onko evilninja yrittänyt ottaa koneeseesi yhteyttä. Analysoi
+lyhyesti 1-2 keskeisintä tähän liittyvää lokiriviä. Liitä vastaus raportti.txt -tiedostoon.
+## Nimipohjainen virtuaalipalvelu
+Laita maijan public_html -kansio näkymään osoitteessa notkeahaku.com. Voit simuloida nimipalvelun toimintaa hosts-tiedoston avulla.
+## Testamentti seuraavalle ylläpitäjälle
+Kirjoita kotihakemistoosi pelkkänä tekstinä raportti.txt ja laita sille turvalliset oikeudet. Laita tähän tiedostoon
+– Koko nimesi
+– Opiskelijanumerosi
+– Linkki läksypakettiisi
+– Lista toimivista palaveluista, skripteistä ym osoitteineen
+– Lista toimimattomista palveluista, skripteistä ym.
+– kaikki käyttäjätunnukset ja salasanat, myös oman sudo-käyttäjäsi
+Kun olet päässyt loppuun, tarkista, että olet vastannut kaikkiin tehtäviin. Huomaa, että ohje on päivittynyt tuon “Testamentti
+seuraavalle ylläpitäjälle” kohdan yläpuolelta.
+```
+
+### 0. Puhdas Linux
+- Tämä tehtävä tehdään uudelle Linux koneelle, tätä varten luomme uuden virtuaalikoneen VirtualBoxissa ja asennan siihen Linuxin.
+
+### 1. LAMP asennus
+- LAMP-pino tarkoittaa Linux, Apache, MySQL/MariaDB, PHP
+- Kurssillamme emme käsitelleet tietokantaohjelmistoa tai PHP :ta, mutta koska minulla on näistä kokemusta aijemmin, teen ne suoraan tehtävänannon mukaisesti.
+- Ensi töiksemme asennamme tarvittavat paketit, eli Apachen, MariaDB ja PHP
+- Aloitamme Apachesta
+
+```
+sudo apt-get install -y apache2
+sudo systemctl enable apache2
+sudo systemctl start apache2
+```
+
+- Testaamme selaimella, että `http://localhost/` näyttää Apachen oletussivun:
+
+![oletussivu](oletussivu.png)
+
+- Seuraavaksi asennamme MariaDBn ja laitamme sen päälle
+
+```
+sudo apt-get install -y mariadb-server mariadb-client
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+```
+
+- Viimeiseksi asennamme PHP
+
+```
+sudo apt-get install -y php php-mysql libapache2-mod-php
+sudo systemctl restart apache2
+```
+
+### 2. Esimerkkitietokanta ja  PHP-ohjelma
+
+#### Tietokanta ja käyttäjä
+
+- Avaamme MariaDB:n
+
+```
+sudo mariadb
+```
+
+- Avautuu MariaDB komentorivi, johon teemme tietokannan
+
+![mariadb-commandline](mariadb-commandline.png)
+
+- Tähän luomme tietokannan ja käyttäjän
+
+```sql
+CREATE DATABASE asiakkaat;
+CREATE USER 'lampkayttaja'@'localhost' IDENTIFIED BY 'LamppuTynka!VauvaMies0';
+GRANT ALL PRIVILEGES ON asiakkaat.* TO 'lampkayttaja'@'localhost';
+FLUSH PRIVILEGES;
+
+USE asiakkaat;
+
+CREATE TABLE asiakas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nimi VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    kaupunki VARCHAR(100)
+);
+
+INSERT INTO asiakas (nimi, email, kaupunki) VALUES
+('Oogle', 'info@oogle.com', 'Helsinki'),
+('Zonama', 'myynti@zonama.fi', 'Tampere'),
+('TechNova', 'hello@technova.io', 'Turku'),
+('DataFlow Oy', 'info@dataflow.fi', 'Oulu'),
+('Pilvipalvelu Ab', 'contact@pilvi.se', 'Vaasa');
+
+EXIT;
+```
+
+![mariadb-exit](mariadb-exit.png)
+
+- Luomme Maija-käyttäjän, ja annamme tälle vahvan salasanan:
+
+```
+sudo adduser maija
+```
+
+![adduser-maija](adduser-maija.png)
+
+- Otamme käyttäjäkohtaiset kotisivut käyttöön Apachessa:
+
+```
+sudo a2enmod userdir
+sudo systemctl restart apache2
+```
+
+- Luomme Maijalle public_html-kansion ja asetamme oikeudet:
+
+```
+sudo mkdir -p /home/maija/public_html
+sudo chown maija:maija /home/maija/public_html
+sudo chmod a+x /home/maija /home/maija/public_html
+```
+
+- Seuraavaksi sallimme PHP käyttäjähakemistoissa muokkaamalla tiedostoa, ja kommentoimalla rivit ohjeen mukaisesti:
+
+```
+sudo micro /etc/apache2/mods-available/php*.conf
+```
+
+![apache-comments](apache-comments.png)
+
+- Ja käynnistämme palvelimen uudelleen:
+
+```
+sudo systemctl restart apache2
+```
+
+#### Esimerkkiohjelma
+
+- Nyt teemme esimerkkiohjelman maijan /public_html/ kansioon:
+
+```
+sudo micro /home/maija/public_html/index.php
+```
+
+![PHP-koodi](PHP-koodi.png)
+
+- Asetamme oikeudet tiedostolle:
+
+```
+sudo chown maija:maija /home/maija/public_html/index.php
+sudo chmod 644 /home/maija/public_html/index.php
+```
+
+- Ja testaamme selaimella menemällä osoitteeseen `http://localhost/~maija/`
 
 ## Lähteet
 - https://terokarvinen.com/linux-palvelimet/
@@ -160,3 +336,5 @@ Tässä tehtävässä teen jonkun aijemmista kurssin arvioitavista laboratoriois
 - https://terokarvinen.com/2007/12/04/shell-scripting-4/
 - https://tldp.org/LDP/abs/html/index.html
 - https://terokarvinen.com/2019/arvioitava-laboratorioharjoitus-linux-palvelimet-ict4tn021-3004-ti-alkukevat-2019-5-op/?fromSearch=laboratorio
+- https://www.w3schools.com/sql/default.asp
+- https://www.w3schools.com/php/default.asp
